@@ -23,12 +23,16 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
+ * 这是一个SpringBoot程序
+ * 是一个EurekaServer
+ *
  * @author xiaoyu
  */
 @SpringBootApplication
 @EnableEurekaServer
 @EnableScheduling
 public class TxManagerApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(TxManagerApplication.class, args);
     }

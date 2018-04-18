@@ -15,6 +15,12 @@ eureka:
       enabled: true
     eurekaServiceUrlPollIntervalSeconds: 60
 
+    # 表示是否注册Eureka服务器,因为自身作为服务注册中心
+    # 单机模式下不注册自己
+    registerWithEureka: true
+    # 是否从eureka上获取注册信息
+    fetchRegistry: true
+
 endpoints:
   health:
     sensitive: false
