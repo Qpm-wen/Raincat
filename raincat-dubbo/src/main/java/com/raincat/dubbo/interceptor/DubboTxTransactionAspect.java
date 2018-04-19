@@ -24,6 +24,8 @@ import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
 /**
+ * dubbo切面
+ *
  * @author xiaoyu
  */
 @Aspect

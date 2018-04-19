@@ -21,10 +21,10 @@ logging:
     level:
         root: error
         org.springframework.web: info
-        org.apache.ibatis: debug
-        com.raincat.bonuspoint: debug
-        com.raincat.lottery: debug
-        com.raincat: debug
+        org.apache.ibatis: info
+        com.raincat.bonuspoint: info
+        com.raincat.lottery: info
+        com.raincat: info
 
     path: "./logs"
 

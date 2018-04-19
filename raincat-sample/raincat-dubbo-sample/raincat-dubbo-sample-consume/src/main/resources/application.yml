@@ -24,8 +24,8 @@ logging:
         org.springframework.web: info
         org.apache.ibatis: info
         com.raincat.bonuspoint: info
-        com.raincat.lottery: debug
-        com.raincat: debug
+        com.raincat.lottery: info
+        com.raincat: info
         io.netty: info
 
     path: "./logs"

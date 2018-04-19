@@ -27,6 +27,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
+ * dubbo拦截器
+ *
  * @author xiaoyu
  */
 @Component
@@ -42,6 +44,10 @@ public class DubboTxTransactionInterceptor implements TxTransactionInterceptor {
 
     @Override
     public Object interceptor(ProceedingJoinPoint pjp) throws Throwable {
+        /*
+            从dubbo的RpcContext中获得事务id
+            RpcContext内部维护一个LocalThread<>，上下文只会获得当前线程的rpc context
+         */
         String groupId = RpcContext.getContext().getAttachment(CommonConstant.TX_TRANSACTION_GROUP);
         return aspectTransactionService.invoke(groupId,pjp);
     }

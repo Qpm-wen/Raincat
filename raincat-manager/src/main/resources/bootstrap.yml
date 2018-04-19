@@ -30,7 +30,7 @@ endpoints:
 logging:
             level:
                 root: info
-                com.raincat.manager : debug
+                com.raincat.manager : info
             path: "./logs"
 
 

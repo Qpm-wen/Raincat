@@ -24,6 +24,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 /**
+ * 抽象分布式事务Aspect
+ *
  * @author xiaoyu
  */
 @Aspect

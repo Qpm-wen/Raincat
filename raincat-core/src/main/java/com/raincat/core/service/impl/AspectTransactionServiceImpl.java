@@ -48,6 +48,9 @@ public class AspectTransactionServiceImpl implements AspectTransactionService {
 
     @Override
     public Object invoke(String transactionGroupId, ProceedingJoinPoint point) throws Throwable {
+        /*
+         获得事务分组id后，开始执行切面方法
+         */
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
         Class<?> clazz = point.getTarget().getClass();
