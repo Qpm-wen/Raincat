@@ -80,22 +80,33 @@ public class StartTxTransactionHandler implements TxTransactionHandler {
         LogUtil.info(LOGGER, "tx-transaction start,  事务发起类：{}",
                 () -> point.getTarget().getClass());
 
+        /*
+        随机产生 事务组id
+         */
         final String groupId = IdWorkerUtils.getInstance().createGroupId();
 
-        //设置事务组ID
+        // 设置事务组ID
+        // ThreadLocal<>保存groupId
         TxTransactionLocal.getInstance().setTxGroupId(groupId);
 
         final String waitKey = IdWorkerUtils.getInstance().createTaskKey();
 
         //创建事务组信息
+        //向txManager发送数据，创建分组事务
         final Boolean success = txManagerMessageService.saveTxTransactionGroup(newTxTransactionGroup(groupId, waitKey, info));
         if (success) {
             //如果发起方没有事务
             if (info.getPropagationEnum().getValue() ==
                     PropagationEnum.PROPAGATION_NEVER.getValue()) {
+                /*
+                注解的Service不要求传播
+                 */
                 try {
                     final Object res = point.proceed();
 
+                    /*
+                    执行完成，告诉TxMananger "自己的任务执行完成"
+                     */
                     final Boolean commit = txManagerMessageService.preCommitTxTransaction(groupId);
                     if (commit) {
                         //通知tm完成事务

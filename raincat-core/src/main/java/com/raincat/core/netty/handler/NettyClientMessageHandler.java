@@ -211,9 +211,15 @@ public class NettyClientMessageHandler extends ChannelInboundHandlerAdapter {
                         if (!sendTask.isNotify()) {
                             if (NettyMessageActionEnum.GET_TRANSACTION_GROUP_STATUS.getCode()
                                     == heartBeat.getAction()) {
+                                /*
+
+                                 */
                                 sendTask.setAsyncCall(objects -> NettyResultEnum.TIME_OUT.getCode());
                             } else if (NettyMessageActionEnum.FIND_TRANSACTION_GROUP_INFO.getCode()
                                     == heartBeat.getAction()) {
+                                /*
+
+                                 */
                                 sendTask.setAsyncCall(objects -> null);
                             } else {
                                 sendTask.setAsyncCall(objects -> false);

@@ -38,14 +38,26 @@ public class TxTransactionFactoryServiceImpl implements TxTransactionFactoryServ
     @Override
     public Class factoryOf(TxTransactionInfo info) throws Throwable {
         if (StringUtils.isNoneBlank(info.getCompensationId())) {
+            /*
+            假如事务补偿的id不为空，则开启补偿的handler
+             */
             return StartCompensationHandler.class;
         }
         if (StringUtils.isBlank(info.getTxGroupId())) {
+            /*
+            假如事务是为空的，则作为事务发起者
+             */
             return StartTxTransactionHandler.class;
         } else {
             if (Objects.equals(CommonConstant.COMPENSATE_ID, info.getTxGroupId())) {
+                /*
+                处理补偿内嵌的远程方法的时候，不提交，只调用
+                 */
                 return InsideCompensationHandler.class;
             }
+            /*
+            事务参与者
+             */
             return ActorTxTransactionHandler.class;
         }
 

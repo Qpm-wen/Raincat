@@ -25,6 +25,8 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
+ * 事务执行器 Invocation
+ *
  * @author xiaoyu
  */
 @Data

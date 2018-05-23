@@ -67,6 +67,10 @@ public class AspectTransactionServiceImpl implements AspectTransactionService {
 
         TransactionInvocation invocation = new TransactionInvocation(clazz, thisMethod.getName(), args, method.getParameterTypes());
         TxTransactionInfo info = new TxTransactionInfo(invocation,transactionGroupId,compensationId,waitMaxTime,propagation);
+
+        /*
+        根据TxTransactionInfo的数据，获取不同的actionHandler。有的actionHandler是创建
+         */
         final Class c = txTransactionFactoryService.factoryOf(info);
         final TxTransactionHandler txTransactionHandler =
                 (TxTransactionHandler) SpringBeanUtils.getInstance().getBean(c);

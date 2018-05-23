@@ -47,6 +47,9 @@ public class DubboTxTransactionInterceptor implements TxTransactionInterceptor {
         /*
             从dubbo的RpcContext中获得事务id
             RpcContext内部维护一个LocalThread<>，上下文只会获得当前线程的rpc context
+
+
+            这里的代码是如何Q:取到一个groupId？
          */
         String groupId = RpcContext.getContext().getAttachment(CommonConstant.TX_TRANSACTION_GROUP);
         return aspectTransactionService.invoke(groupId,pjp);
